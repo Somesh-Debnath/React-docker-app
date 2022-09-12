@@ -54,6 +54,37 @@ export default function App(){
     });
     document.location.reload();
   }
+let card = fetchData.map((val,key) => {
+  return(
+    
+      <Card style={{ width: '18rem' }} className='m-2'> 
+        <Card.Body>
+          <Card.Title>{val.book_name}</Card.Title>
+          <Card.Text>{val.book_review}</Card.Text>
+          <input name='reviewUpdate' onChange={handleChangeReview} placeholder='Update Review' ></input>
+               <Button className='m-2' onClick={() => { updateReview(val.id) }}>Update</Button>
+               <Button onClick={() => { deleteReview(val.id) }}>Delete</Button>
+        </Card.Body>
+      </Card>
+  
+  );
+});
+
+return (
+  <div className='App'>
+      <h1>Dockerized Fullstack React Application</h1>
+      <div className='form'>
+          <input name='setBookName' placeholder='Enter Book Name' onChange={handleChange} />
+          <input name='setReview' placeholder='Enter Review' onChange={handleChange} />
+      </div>
+      <Button className='my-2' variant="primary" onClick={submitReview}>Submit</Button> <br /><br />
+      <Container>
+          <Row>
+              {card}
+          </Row>
+      </Container>
+  </div>
+);
 
 }
 
